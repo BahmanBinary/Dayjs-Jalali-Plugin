@@ -41,6 +41,7 @@ export default (o, Dayjs, dayjs) => {
   const oldDaysInMonth = proto.daysInMonth;
   const oldToArray = proto.toArray;
   const oldLocaleData = proto.localeData;
+  const factoryOldLocaleData = dayjs.localeData;
 
   dayjs.$C = 'gregory';
   // First Day Of Week
@@ -304,10 +305,22 @@ export default (o, Dayjs, dayjs) => {
 
   // localeData plugin
   if (oldLocaleData) {
+    dayjs.localeData = function () {
+      if (!$isJalali(this)) {
+        return factoryOldLocaleData();
+      }
+
+      return {
+        ...factoryOldLocaleData(),
+        months: () => C.fa.jmonths,
+      };
+    };
+
     proto.localeData = function () {
       if (!$isJalali(this)) {
         return oldLocaleData.bind(this)();
       }
+
       return {
         ...oldLocaleData.bind(this)(),
         months: () => C.fa.jmonths,
