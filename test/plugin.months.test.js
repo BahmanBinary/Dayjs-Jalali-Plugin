@@ -16,3 +16,23 @@ it('Should jalali month for localeData plugin', () => {
   expect(months).toBe(fa.jmonths);
   expect(week).toEqual(weekdays);
 });
+
+it('dayjs factory jalali months for localeData plugin', () => {
+  dayjs.calendar('gregory');
+  dayjs.locale('en');
+
+  let months = dayjs.localeData().months();
+  let week = dayjs.localeData().weekdays();
+
+  expect(months).not.toBe(fa.jmonths);
+  expect(week).not.toEqual(weekdays);
+
+  dayjs.calendar('jalali');
+  dayjs.locale('fa');
+
+  months = dayjs.localeData().months();
+  week = dayjs.localeData().weekdays();
+
+  expect(months).toBe(fa.jmonths);
+  expect(week).toEqual(weekdays);
+});
