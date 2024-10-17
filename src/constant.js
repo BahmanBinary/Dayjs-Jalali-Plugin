@@ -10,6 +10,12 @@ export const W = 'week';
 
 export const FORMAT_DEFAULT = 'YYYY-MM-DDTHH:mm:ssZ';
 
+export const en = {
+  jmonths: 'Farvardin_Ordibehesht_Khordaad_Tir_Mordaad_Shahrivar_Mehr_Aabaan_Aazar_Dey_Bahman_Esfand'.split(
+    '_'
+  ),
+};
+
 export const fa = {
   jmonths: 'فروردین_اردیبهشت_خرداد_تیر_مرداد_شهریور_مهر_آبان_آذر_دی_بهمن_اسفند'.split('_'),
 };

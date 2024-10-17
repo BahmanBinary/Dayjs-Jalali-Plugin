@@ -69,8 +69,7 @@ export default (o, Dayjs, dayjs) => {
     return $isJalali(this);
   };
 
-  dayjs.en.jmonths =
-    'Farvardin_Ordibehesht_Khordaad_Tir_Mordaad_Shahrivar_Mehr_Aabaan_Aazar_Dey_Bahman_Esfand'.split('_');
+  dayjs.en.jmonths = C.en.jmonths;
   dayjs.locale('fa', { ...fa, ...C.fa }, true);
 
   const wrapper = function (date, instance) {
@@ -312,7 +311,7 @@ export default (o, Dayjs, dayjs) => {
 
       return {
         ...factoryOldLocaleData(),
-        months: () => C.fa.jmonths,
+        months: () => (dayjs.locale() === 'fa' ? C.fa.jmonths : C.en.jmonths),
       };
     };
 
@@ -323,7 +322,7 @@ export default (o, Dayjs, dayjs) => {
 
       return {
         ...oldLocaleData.bind(this)(),
-        months: () => C.fa.jmonths,
+        months: () => (this.locale() === 'fa' ? C.fa.jmonths : C.en.jmonths),
       };
     };
   }
